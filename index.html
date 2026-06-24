@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>トリモブのハロウィンナイト — 事業計画書</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0c0c1e;
+      --surface: rgba(255,255,255,0.04);
+      --border: rgba(255,255,255,0.1);
+      --orange: #fb923c;
+      --orange-dim: rgba(251,146,60,0.15);
+      --orange-border: rgba(251,146,60,0.4);
+      --purple: #a78bfa;
+      --purple-dim: rgba(167,139,250,0.12);
+      --yellow: #fbbf24;
+      --green: #34d399;
+      --red: #f87171;
+      --text: #f1f1f1;
+      --muted: #9ca3af;
+      --faint: #6b7280;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Hiragino Sans", "Noto Sans JP", "Yu Gothic", sans-serif;
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ── Layout ── */
+    .container { max-width: 960px; margin: 0 auto; padding: 0 20px; }
+    .section { padding: 56px 0 0; }
+
+    /* ── Hero ── */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 72px 20px 60px;
+      text-align: center;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(180,60,0,0.25) 0%, transparent 70%),
+                  radial-gradient(ellipse 60% 50% at 80% 80%, rgba(100,0,180,0.15) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(251,146,60,0.15);
+      border: 1px solid rgba(251,146,60,0.4);
+      color: var(--orange);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      padding: 6px 16px;
+      border-radius: 999px;
+      margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-size: clamp(2.2rem, 6vw, 3.8rem);
+      font-weight: 900;
+      line-height: 1.15;
+      margin-bottom: 14px;
+    }
+    .hero h1 .accent {
+      background: linear-gradient(90deg, #fb923c, #fbbf24);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero .sub { color: var(--muted); font-size: 1rem; margin-bottom: 6px; }
+    .hero .org { color: var(--faint); font-size: .8rem; }
+
+    /* ── Section title ── */
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .section-title h2 { font-size: 1rem; font-weight: 700; white-space: nowrap; }
+    .section-title .line { flex: 1; height: 1px; background: var(--border); }
+
+    /* ── KPI Grid ── */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+    @media(min-width: 600px) { .kpi-grid { grid-template-columns: repeat(4, 1fr); } }
+    .kpi-card {
+      border-radius: 16px;
+      border: 1px solid;
+      padding: 18px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .kpi-card.orange { background: rgba(124,45,18,0.25); border-color: rgba(251,146,60,0.35); }
+    .kpi-card.purple { background: rgba(76,29,149,0.25); border-color: rgba(167,139,250,0.35); }
+    .kpi-card.yellow { background: rgba(120,80,0,0.2); border-color: rgba(251,191,36,0.35); }
+    .kpi-card.green  { background: rgba(6,78,59,0.2);  border-color: rgba(52,211,153,0.35); }
+    .kpi-icon { font-size: 1.5rem; }
+    .kpi-label { font-size: .7rem; color: var(--muted); }
+    .kpi-value { font-size: clamp(1.4rem, 4vw, 1.9rem); font-weight: 900; line-height: 1; }
+    .kpi-value .unit { font-size: .75rem; font-weight: 500; margin-left: 3px; }
+    .kpi-card.orange .kpi-value { color: var(--orange); }
+    .kpi-card.purple .kpi-value { color: var(--purple); }
+    .kpi-card.yellow .kpi-value { color: var(--yellow); }
+    .kpi-card.green  .kpi-value { color: var(--green); }
+    .kpi-note { font-size: .68rem; color: var(--faint); line-height: 1.4; }
+
+    /* ── Venue Grid ── */
+    .venue-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+    @media(min-width: 640px) { .venue-grid { grid-template-columns: repeat(3, 1fr); } }
+    .venue-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 22px;
+    }
+    .venue-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 14px;
+    }
+    .venue-emoji { font-size: 2rem; }
+    .venue-badge {
+      font-size: .65rem;
+      color: var(--faint);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 999px;
+      padding: 2px 8px;
+    }
+    .venue-name { font-weight: 700; font-size: .9rem; margin-bottom: 3px; }
+    .venue-concept { color: var(--orange); font-size: .72rem; font-weight: 600; margin-bottom: 12px; }
+    .venue-items { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+    .venue-items li { font-size: .78rem; color: #d1d5db; display: flex; gap: 8px; }
+    .venue-items li::before { content: "▸"; color: var(--orange); flex-shrink: 0; margin-top: 1px; }
+
+    /* ── Task Accordion ── */
+    .phase-list { display: flex; flex-direction: column; gap: 10px; }
+    .phase-item {
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      overflow: hidden;
+      transition: border-color .2s;
+    }
+    .phase-item.current { border-color: rgba(251,146,60,0.55); background: rgba(124,45,18,0.18); }
+    .phase-trigger {
+      width: 100%;
+      background: none;
+      border: none;
+      color: var(--text);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 22px;
+      text-align: left;
+      gap: 12px;
+    }
+    .phase-trigger:hover { background: rgba(255,255,255,0.02); }
+    .phase-left { display: flex; align-items: center; gap: 14px; }
+    .phase-tag {
+      font-size: .7rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.06);
+      color: var(--muted);
+      white-space: nowrap;
+    }
+    .phase-item.current .phase-tag {
+      background: rgba(251,146,60,0.18);
+      border-color: rgba(251,146,60,0.5);
+      color: var(--orange);
+    }
+    .phase-info { display: flex; flex-direction: column; gap: 2px; }
+    .phase-title { font-size: .9rem; font-weight: 600; }
+    .phase-deadline { font-size: .72rem; color: var(--faint); }
+    .phase-right { display: flex; align-items: center; gap: 10px; }
+    .now-badge {
+      background: var(--orange);
+      color: #fff;
+      font-size: .65rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 999px;
+    }
+    .chevron { color: var(--faint); font-size: .85rem; transition: transform .2s; }
+    .phase-item.open .chevron { transform: rotate(180deg); }
+    .phase-body {
+      display: none;
+      padding: 0 22px 18px;
+      border-top: 1px solid var(--border);
+    }
+    .phase-item.open .phase-body { display: block; }
+    .task-list { list-style: none; margin-top: 14px; display: flex; flex-direction: column; gap: 10px; }
+    .task-list li { display: flex; align-items: flex-start; gap: 10px; font-size: .82rem; color: #e5e7eb; }
+    .task-check {
+      width: 16px; height: 16px;
+      border: 1px solid #4b5563;
+      border-radius: 4px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    /* ── Weather ── */
+    .weather-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    @media(min-width: 560px) { .weather-grid { grid-template-columns: repeat(2, 1fr); } }
+    .weather-card {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 16px;
+      border-radius: 12px;
+      border: 1px solid;
+    }
+    .weather-card.green  { background: rgba(6,78,59,0.2);  border-color: rgba(52,211,153,0.3); }
+    .weather-card.yellow { background: rgba(120,80,0,0.2); border-color: rgba(251,191,36,0.3); }
+    .weather-card.orange { background: rgba(124,45,18,0.2); border-color: rgba(251,146,60,0.3); }
+    .weather-card.red    { background: rgba(127,29,29,0.2); border-color: rgba(248,113,113,0.3); }
+    .weather-emoji { font-size: 1.8rem; }
+    .weather-level { font-weight: 700; font-size: .85rem; margin-bottom: 3px; }
+    .weather-card.green  .weather-level { color: var(--green); }
+    .weather-card.yellow .weather-level { color: var(--yellow); }
+    .weather-card.orange .weather-level { color: var(--orange); }
+    .weather-card.red    .weather-level { color: var(--red); }
+    .weather-detail { font-size: .72rem; color: var(--muted); }
+
+    .food-scheme {
+      background: rgba(30,58,138,0.2);
+      border: 1px solid rgba(96,165,250,0.25);
+      border-radius: 14px;
+      padding: 20px;
+    }
+    .food-scheme-title { color: #93c5fd; font-weight: 700; font-size: .85rem; margin-bottom: 14px; }
+    .scheme-grid { display: grid; grid-template-columns: 1fr; gap: 10px; }
+    @media(min-width: 560px) { .scheme-grid { grid-template-columns: repeat(2, 1fr); } }
+    .scheme-card {
+      background: rgba(255,255,255,0.05);
+      border-radius: 10px;
+      padding: 14px;
+    }
+    .scheme-name { font-weight: 700; font-size: .82rem; margin-bottom: 6px; }
+    .scheme-desc { font-size: .74rem; color: var(--muted); line-height: 1.55; }
+
+    /* ── Budget ── */
+    .budget-grid { display: grid; grid-template-columns: 1fr; gap: 14px; }
+    @media(min-width: 640px) { .budget-grid { grid-template-columns: repeat(2, 1fr); } }
+    .budget-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 22px;
+    }
+    .budget-card-title { font-size: .78rem; color: var(--muted); font-weight: 600; margin-bottom: 16px; }
+    .budget-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: .82rem;
+      padding: 6px 0;
+    }
+    .budget-row .name { color: #d1d5db; }
+    .budget-row .val { color: var(--text); font-weight: 600; font-variant-numeric: tabular-nums; }
+    .budget-row .val .yen { font-size: .7rem; color: var(--faint); margin-left: 2px; }
+    .budget-total {
+      border-top: 1px solid var(--border);
+      margin-top: 8px;
+      padding-top: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-weight: 700;
+    }
+    .budget-total .total-val { font-size: 1.3rem; color: var(--orange); }
+    .budget-total .total-val .unit { font-size: .75rem; margin-left: 2px; }
+    .income-item { display: flex; align-items: flex-start; gap: 10px; padding: 6px 0; }
+    .income-plus { color: var(--green); font-size: .85rem; flex-shrink: 0; margin-top: 1px; }
+    .income-name { font-size: .82rem; color: #d1d5db; }
+    .income-note { font-size: .7rem; color: var(--faint); }
+
+    /* ── Partners ── */
+    .partner-grid { display: grid; grid-template-columns: 1fr; gap: 14px; }
+    @media(min-width: 640px) { .partner-grid { grid-template-columns: repeat(3, 1fr); } }
+    .partner-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px;
+    }
+    .partner-emoji { font-size: 1.6rem; display: block; margin-bottom: 12px; }
+    .partner-title { font-weight: 700; font-size: .88rem; margin-bottom: 12px; }
+    .partner-points { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+    .partner-points li { font-size: .78rem; color: #d1d5db; display: flex; gap: 8px; }
+    .partner-points li::before { content: "▸"; color: var(--purple); flex-shrink: 0; }
+
+    /* ── Timeline ── */
+    .timeline {
+      position: relative;
+      padding-left: 28px;
+      border-left: 2px solid rgba(180,60,0,0.4);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .tl-item { position: relative; }
+    .tl-dot {
+      position: absolute;
+      left: -36px;
+      top: 8px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      border: 2px solid #4b5563;
+      background: var(--bg);
+    }
+    .tl-item.current .tl-dot { background: #c2410c; border-color: var(--orange); }
+    .tl-item.highlight .tl-dot { background: var(--orange); border-color: var(--orange); }
+    .tl-card {
+      border-radius: 12px;
+      padding: 12px 16px;
+      border: 1px solid rgba(255,255,255,0.07);
+      background: rgba(255,255,255,0.025);
+    }
+    .tl-item.current .tl-card { background: rgba(255,255,255,0.07); border-color: rgba(255,255,255,0.14); }
+    .tl-item.highlight .tl-card { background: rgba(251,146,60,0.12); border-color: rgba(251,146,60,0.45); }
+    .tl-month {
+      font-size: .7rem;
+      font-weight: 700;
+      color: var(--faint);
+      margin-bottom: 3px;
+    }
+    .tl-item.current .tl-month { color: #fdba74; }
+    .tl-item.highlight .tl-month { color: var(--orange); }
+    .tl-text { font-size: .84rem; color: #d1d5db; }
+    .tl-item.highlight .tl-text { color: #fff; font-weight: 600; }
+    .now-pill {
+      display: inline-block;
+      background: var(--orange);
+      color: #fff;
+      font-size: .62rem;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 4px;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+
+    /* ── Footer ── */
+    footer {
+      margin-top: 72px;
+      border-top: 1px solid rgba(255,255,255,0.07);
+      padding: 28px 20px;
+      text-align: center;
+      font-size: .72rem;
+      color: var(--faint);
+    }
+
+    /* ── Util ── */
+    .pb-section { padding-bottom: 56px; }
+  </style>
+</head>
+<body>
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-badge">2026.10 鳥取市 — 事業計画書</div>
+    <h1>🎃 <span class="accent">トリモブの</span>ハロウィンナイト</h1>
+    <p class="sub">サンロード商店街 × 丸由百貨店アーケード × 風紋広場</p>
+    <p class="org">主催：株式会社琴線</p>
+  </div>
+
+  <div class="container pb-section">
+
+    <!-- KPI -->
+    <div class="section">
+      <div class="section-title"><h2>📊 目標数値（暫定）</h2><div class="line"></div></div>
+      <div class="kpi-grid">
+        <div class="kpi-card orange">
+          <div class="kpi-icon">👥</div>
+          <div class="kpi-label">来場見込み</div>
+          <div class="kpi-value">3,000〜5,000<span class="unit">人</span></div>
+          <div class="kpi-note">子育て王国連携・SNS広報込み</div>
+        </div>
+        <div class="kpi-card purple">
+          <div class="kpi-icon">🍽️</div>
+          <div class="kpi-label">出店目標</div>
+          <div class="kpi-value">15〜20<span class="unit">ブース</span></div>
+          <div class="kpi-note">キッチンカー・物販・体験含む</div>
+        </div>
+        <div class="kpi-card yellow">
+          <div class="kpi-icon">💴</div>
+          <div class="kpi-label">予算規模</div>
+          <div class="kpi-value">〜125<span class="unit">万円</span></div>
+          <div class="kpi-note">協賛・後援により圧縮可能</div>
+        </div>
+        <div class="kpi-card green">
+          <div class="kpi-icon">📅</div>
+          <div class="kpi-label">開催まで</div>
+          <div class="kpi-value">129<span class="unit">日</span></div>
+          <div class="kpi-note">2026年10月末を想定</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Venues -->
+    <div class="section">
+      <div class="section-title"><h2>📍 開催エリア</h2><div class="line"></div></div>
+      <div class="venue-grid">
+        <div class="venue-card">
+          <div class="venue-head">
+            <span class="venue-emoji">🏮</span>
+            <span class="venue-badge">ZONE 01</span>
+          </div>
+          <div class="venue-name">サンロード商店街</div>
+          <div class="venue-concept">「魔女の市場」</div>
+          <ul class="venue-items">
+            <li>トリック・オア・トリートスタンプラリー</li>
+            <li>ハロウィンフォトスポット設置</li>
+            <li>仮装コンテスト＆パレード</li>
+            <li>トリモブキャラクター巡回</li>
+          </ul>
+        </div>
+        <div class="venue-card">
+          <div class="venue-head">
+            <span class="venue-emoji">🎃</span>
+            <span class="venue-badge">ZONE 02</span>
+          </div>
+          <div class="venue-name">丸由百貨店アーケード</div>
+          <div class="venue-concept">「ハロウィンフードコート」</div>
+          <ul class="venue-items">
+            <li>キッチンカー5〜8台集結</li>
+            <li>コラボ限定メニュー販売</li>
+            <li>ナイトマーケット演出</li>
+            <li>クラフトワークショップ</li>
+          </ul>
+        </div>
+        <div class="venue-card">
+          <div class="venue-head">
+            <span class="venue-emoji">🎤</span>
+            <span class="venue-badge">ZONE 03</span>
+          </div>
+          <div class="venue-name">風紋広場（駅前）</div>
+          <div class="venue-concept">「ハロウィンメインステージ」</div>
+          <ul class="venue-items">
+            <li>ライブ・ダンスパフォーマンス</li>
+            <li>キャラクターショー（1日2〜3回）</li>
+            <li>大型かぼちゃオブジェ設置</li>
+            <li>子どもアクティビティゾーン</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tasks -->
+    <div class="section">
+      <div class="section-title"><h2>✅ 今後やること（フェーズ別タスク）</h2><div class="line"></div></div>
+      <div class="phase-list" id="phases">
+
+        <div class="phase-item current open">
+          <button class="phase-trigger" onclick="togglePhase(this)">
+            <div class="phase-left">
+              <span class="phase-tag">Phase 1</span>
+              <div class="phase-info">
+                <span class="phase-title">企画・許可取得</span>
+                <span class="phase-deadline">8月末まで</span>
+              </div>
+            </div>
+            <div class="phase-right">
+              <span class="now-badge">NOW</span>
+              <span class="chevron">▼</span>
+            </div>
+          </button>
+          <div class="phase-body">
+            <ul class="task-list">
+              <li><span class="task-check"></span>サンロード商店街振興組合への説明・許可申請</li>
+              <li><span class="task-check"></span>丸由百貨店（ビル管理会社）への交渉・使用許可</li>
+              <li><span class="task-check"></span>風紋広場の使用許可申請（鳥取市）</li>
+              <li><span class="task-check"></span>鳥取県・鳥取市への後援申請</li>
+              <li><span class="task-check"></span>子育て王国担当課へのタイアップ提案</li>
+              <li><span class="task-check"></span>保健所への露店営業届出</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="phase-item">
+          <button class="phase-trigger" onclick="togglePhase(this)">
+            <div class="phase-left">
+              <span class="phase-tag">Phase 2</span>
+              <div class="phase-info">
+                <span class="phase-title">出店者・協力者の招致</span>
+                <span class="phase-deadline">9月末まで</span>
+              </div>
+            </div>
+            <div class="phase-right"><span class="chevron">▼</span></div>
+          </button>
+          <div class="phase-body">
+            <ul class="task-list">
+              <li><span class="task-check"></span>キッチンカー・飲食出店者の募集・審査</li>
+              <li><span class="task-check"></span>ワークショップ・物販出店者の募集</li>
+              <li><span class="task-check"></span>キャラクターショー・パフォーマー手配</li>
+              <li><span class="task-check"></span>地元アーティスト・ステージ出演者の確定</li>
+              <li><span class="task-check"></span>スポンサー企業への提案・協賛契約</li>
+              <li><span class="task-check"></span>メディアパートナーへの告知依頼</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="phase-item">
+          <button class="phase-trigger" onclick="togglePhase(this)">
+            <div class="phase-left">
+              <span class="phase-tag">Phase 3</span>
+              <div class="phase-info">
+                <span class="phase-title">広報・集客</span>
+                <span class="phase-deadline">10月上旬まで</span>
+              </div>
+            </div>
+            <div class="phase-right"><span class="chevron">▼</span></div>
+          </button>
+          <div class="phase-body">
+            <ul class="task-list">
+              <li><span class="task-check"></span>フライヤー・ポスター作成・配布</li>
+              <li><span class="task-check"></span>SNS告知開始（Instagram / X / Facebook）</li>
+              <li><span class="task-check"></span>県・市の広報チャンネルへの掲載依頼</li>
+              <li><span class="task-check"></span>プレスリリース配信（メディア向け）</li>
+              <li><span class="task-check"></span>出店者によるSNS拡散・ハッシュタグ統一</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="phase-item">
+          <button class="phase-trigger" onclick="togglePhase(this)">
+            <div class="phase-left">
+              <span class="phase-tag">Phase 4</span>
+              <div class="phase-info">
+                <span class="phase-title">直前準備</span>
+                <span class="phase-deadline">10月中旬〜</span>
+              </div>
+            </div>
+            <div class="phase-right"><span class="chevron">▼</span></div>
+          </button>
+          <div class="phase-body">
+            <ul class="task-list">
+              <li><span class="task-check"></span>会場レイアウト確定・機材発注</li>
+              <li><span class="task-check"></span>電源・設備確認（キッチンカー用電力・PA機材）</li>
+              <li><span class="task-check"></span>ボランティアスタッフ説明会・役割分担</li>
+              <li><span class="task-check"></span>緊急時・中止時の連絡網整備</li>
+              <li><span class="task-check"></span>天候モニタリング開始</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="phase-item">
+          <button class="phase-trigger" onclick="togglePhase(this)">
+            <div class="phase-left">
+              <span class="phase-tag">Phase 5</span>
+              <div class="phase-info">
+                <span class="phase-title">当日運営・事後対応</span>
+                <span class="phase-deadline">10月下旬〜</span>
+              </div>
+            </div>
+            <div class="phase-right"><span class="chevron">▼</span></div>
+          </button>
+          <div class="phase-body">
+            <ul class="task-list">
+              <li><span class="task-check"></span>会場設営（前日〜当日朝）</li>
+              <li><span class="task-check"></span>出店者受け入れ・配置確認</li>
+              <li><span class="task-check"></span>ステージ進行管理・来場者カウント</li>
+              <li><span class="task-check"></span>来場者数・売上データ集計</li>
+              <li><span class="task-check"></span>報告書提出・反省会</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Weather -->
+    <div class="section">
+      <div class="section-title"><h2>🌧️ 天候中止ボーダーライン</h2><div class="line"></div></div>
+      <div class="weather-grid">
+        <div class="weather-card green">
+          <span class="weather-emoji">☀️</span>
+          <div>
+            <div class="weather-level">通常開催</div>
+            <div class="weather-detail">雨量：1mm/時未満　風速：5m/s未満</div>
+          </div>
+        </div>
+        <div class="weather-card yellow">
+          <span class="weather-emoji">🌦️</span>
+          <div>
+            <div class="weather-level">注意・待機</div>
+            <div class="weather-detail">雨量：1〜3mm/時　風速：5〜8m/s</div>
+          </div>
+        </div>
+        <div class="weather-card orange">
+          <span class="weather-emoji">🌧️</span>
+          <div>
+            <div class="weather-level">屋外エリア中止</div>
+            <div class="weather-detail">雨量：3mm/時以上　風速：8〜10m/s</div>
+          </div>
+        </div>
+        <div class="weather-card red">
+          <span class="weather-emoji">⛔</span>
+          <div>
+            <div class="weather-level">全面中止</div>
+            <div class="weather-detail">雨量：5mm以上が1時間継続 / 警報発令</div>
+          </div>
+        </div>
+      </div>
+      <div class="food-scheme">
+        <div class="food-scheme-title">🛡️ フードロス対策スキーム（中止時）</div>
+        <div class="scheme-grid">
+          <div class="scheme-card">
+            <div class="scheme-name">スキームA：運営が代替販売</div>
+            <div class="scheme-desc">出店者に代わり運営スタッフがアーケード内で販売代行。売上は全額出店者へ返還（手数料ゼロ）。</div>
+          </div>
+          <div class="scheme-card">
+            <div class="scheme-name">スキームB：運営が買い取り</div>
+            <div class="scheme-desc">残品を原価の50〜70%で運営が買い取り。スタッフの食事・スポンサー贈呈・実店舗誘導PRに活用。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Budget -->
+    <div class="section">
+      <div class="section-title"><h2>💰 予算・収入概要</h2><div class="line"></div></div>
+      <div class="budget-grid">
+        <div class="budget-card">
+          <div class="budget-card-title">支出概算</div>
+          <div class="budget-row"><span class="name">会場設営・装飾</span><span class="val">30〜50<span class="yen">万</span></span></div>
+          <div class="budget-row"><span class="name">PA・照明機材</span><span class="val">10〜20<span class="yen">万</span></span></div>
+          <div class="budget-row"><span class="name">キャラクター・パフォーマー</span><span class="val">10〜20<span class="yen">万</span></span></div>
+          <div class="budget-row"><span class="name">広報・印刷物</span><span class="val">5〜10<span class="yen">万</span></span></div>
+          <div class="budget-row"><span class="name">フードロス買い取り予備費</span><span class="val">5〜10<span class="yen">万</span></span></div>
+          <div class="budget-row"><span class="name">保険・保証費用</span><span class="val">3〜5<span class="yen">万</span></span></div>
+          <div class="budget-row"><span class="name">雑費・備品</span><span class="val">5〜10<span class="yen">万</span></span></div>
+          <div class="budget-total">
+            <span>合計</span>
+            <span class="total-val">68〜125<span class="unit">万円</span></span>
+          </div>
+        </div>
+        <div class="budget-card">
+          <div class="budget-card-title">収入源</div>
+          <div class="income-item">
+            <span class="income-plus">＋</span>
+            <div><div class="income-name">出店料（飲食・物販）</div><div class="income-note">ブース数×単価</div></div>
+          </div>
+          <div class="income-item">
+            <span class="income-plus">＋</span>
+            <div><div class="income-name">スポンサー協賛費</div><div class="income-note">企業冠スポンサー</div></div>
+          </div>
+          <div class="income-item">
+            <span class="income-plus">＋</span>
+            <div><div class="income-name">ワークショップ参加費</div><div class="income-note">有料体験ブース</div></div>
+          </div>
+          <div class="income-item">
+            <span class="income-plus">＋</span>
+            <div><div class="income-name">グッズ・コラボ商品販売</div><div class="income-note">トリモブコラボ</div></div>
+          </div>
+          <div class="income-item">
+            <span class="income-plus">＋</span>
+            <div><div class="income-name">県・市からの補助金</div><div class="income-note">後援申請と連動</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Partners -->
+    <div class="section">
+      <div class="section-title"><h2>🤝 連携・集客戦略</h2><div class="line"></div></div>
+      <div class="partner-grid">
+        <div class="partner-card">
+          <span class="partner-emoji">🏛️</span>
+          <div class="partner-title">鳥取県「子育て王国」</div>
+          <ul class="partner-points">
+            <li>共催・後援名義取得</li>
+            <li>県公式SNS・メルマガで広報</li>
+            <li>参加者向け子育て特典配布</li>
+          </ul>
+        </div>
+        <div class="partner-card">
+          <span class="partner-emoji">📺</span>
+          <div class="partner-title">地元メディア連携</div>
+          <ul class="partner-points">
+            <li>NHK鳥取・日本海新聞</li>
+            <li>プレスリリース配信</li>
+            <li>取材誘致・当日密着</li>
+          </ul>
+        </div>
+        <div class="partner-card">
+          <span class="partner-emoji">🎓</span>
+          <div class="partner-title">大学・短大ボランティア</div>
+          <ul class="partner-points">
+            <li>鳥取大学・鳥取短大</li>
+            <li>学生スタッフ確保</li>
+            <li>コスプレ文化との連携</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Timeline -->
+    <div class="section">
+      <div class="section-title"><h2>🗓️ スケジュール</h2><div class="line"></div></div>
+      <div class="timeline">
+        <div class="tl-item current">
+          <div class="tl-dot"></div>
+          <div class="tl-card">
+            <div class="tl-month">2026年6月</div>
+            <div class="tl-text">基本企画確定・各会場への初回説明<span class="now-pill">現在</span></div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-card">
+            <div class="tl-month">2026年7月</div>
+            <div class="tl-text">行政への許可申請・鳥取県後援打診</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-card">
+            <div class="tl-month">2026年8月</div>
+            <div class="tl-text">出店者募集開始・スポンサー交渉・広報素材制作</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-card">
+            <div class="tl-month">2026年9月</div>
+            <div class="tl-text">出店者確定・メディア告知・スタッフ募集</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-card">
+            <div class="tl-month">2026年10月上旬</div>
+            <div class="tl-text">最終確認・リハーサル・SNS集中告知</div>
+          </div>
+        </div>
+        <div class="tl-item highlight">
+          <div class="tl-dot"></div>
+          <div class="tl-card">
+            <div class="tl-month">2026年10月下旬</div>
+            <div class="tl-text">🎃 トリモブのハロウィンナイト 開催！</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-card">
+            <div class="tl-month">2026年11月</div>
+            <div class="tl-text">報告・振り返り・次回企画へ</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /container -->
+
+  <footer>
+    株式会社琴線 — トリモブフェスタ 2026 &nbsp;|&nbsp; 本資料は事業計画の暫定案です
+  </footer>
+
+  <script>
+    function togglePhase(btn) {
+      const item = btn.closest('.phase-item');
+      item.classList.toggle('open');
+    }
+  </script>
+</body>
+</html>
