@@ -267,6 +267,67 @@
     .scheme-name { font-weight: 700; font-size: .82rem; margin-bottom: 6px; }
     .scheme-desc { font-size: .74rem; color: var(--muted); line-height: 1.55; }
 
+    /* ── Sponsor ── */
+    .sponsor-note {
+      font-size: .78rem;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+    .sponsor-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: .8rem;
+    }
+    .sponsor-table th {
+      text-align: left;
+      color: var(--faint);
+      font-weight: 600;
+      font-size: .7rem;
+      padding: 6px 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .sponsor-table td {
+      padding: 7px 12px;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      color: #d1d5db;
+    }
+    .sponsor-table td:last-child {
+      text-align: right;
+      color: var(--text);
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+    .sponsor-table tr:last-child td { border-bottom: none; }
+    .sponsor-table .sponsor-total td {
+      border-top: 1px solid var(--border);
+      color: var(--orange);
+      font-weight: 700;
+      padding-top: 10px;
+    }
+    .sponsor-wrap {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 22px;
+    }
+    .sponsor-plans {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    @media(min-width: 560px) { .sponsor-plans { grid-template-columns: repeat(2, 1fr); } }
+    .sponsor-plan-card {
+      background: rgba(255,255,255,0.04);
+      border-radius: 10px;
+      padding: 14px 16px;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .splan-name { font-weight: 700; font-size: .82rem; margin-bottom: 4px; }
+    .splan-amount { font-size: .88rem; color: var(--orange); font-weight: 700; margin-bottom: 4px; }
+    .splan-benefit { font-size: .72rem; color: var(--muted); line-height: 1.5; }
+
     /* ── Budget ── */
     .budget-grid { display: grid; grid-template-columns: 1fr; gap: 14px; }
     @media(min-width: 640px) { .budget-grid { grid-template-columns: repeat(2, 1fr); } }
@@ -380,6 +441,160 @@
       color: var(--faint);
     }
 
+    /* ── Crowdfunding ── */
+    .cf-hero {
+      background: linear-gradient(135deg, rgba(167,139,250,0.12) 0%, rgba(251,146,60,0.1) 100%);
+      border: 1px solid rgba(167,139,250,0.3);
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 20px;
+    }
+    .cf-tagline {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.55;
+      margin-bottom: 10px;
+    }
+    .cf-tagline .accent { color: var(--orange); }
+    .cf-sub {
+      font-size: .8rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+    .cf-tiers {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    @media(min-width:560px) { .cf-tiers { grid-template-columns: repeat(3,1fr); } }
+    .cf-tier {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .cf-tier.featured {
+      border-color: rgba(251,146,60,0.5);
+      background: rgba(251,146,60,0.07);
+    }
+    .cf-tier-amount {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--orange);
+    }
+    .cf-tier.plain .cf-tier-amount { color: var(--purple); }
+    .cf-tier-label {
+      font-size: .78rem;
+      font-weight: 700;
+      color: #e5e7eb;
+    }
+    .cf-tier-return {
+      font-size: .72rem;
+      color: var(--muted);
+      line-height: 1.55;
+      margin-top: 4px;
+    }
+    .cf-tier-tag {
+      display: inline-block;
+      font-size: .6rem;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 4px;
+      margin-bottom: 4px;
+      width: fit-content;
+    }
+    .cf-tier-tag.pop { background: rgba(251,146,60,0.25); color: #fdba74; }
+    .cf-tier-tag.entry { background: rgba(167,139,250,0.2); color: #c4b5fd; }
+    .cf-tier-tag.cheer { background: rgba(52,211,153,0.15); color: #6ee7b7; }
+    .cf-spirit {
+      background: rgba(52,211,153,0.07);
+      border: 1px solid rgba(52,211,153,0.2);
+      border-radius: 12px;
+      padding: 16px 20px;
+      font-size: .8rem;
+      color: #a7f3d0;
+      line-height: 1.7;
+    }
+    .cf-spirit strong { color: #6ee7b7; }
+
+    /* ── Urgent Tasks ── */
+    .urgent-banner {
+      background: rgba(239,68,68,0.1);
+      border: 1px solid rgba(239,68,68,0.4);
+      border-radius: 16px;
+      padding: 22px;
+      margin-bottom: 0;
+    }
+    .urgent-banner-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    .urgent-badge {
+      background: #ef4444;
+      color: #fff;
+      font-size: .62rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 4px;
+      letter-spacing: .04em;
+    }
+    .urgent-banner-header h3 {
+      font-size: .88rem;
+      font-weight: 700;
+      color: #fca5a5;
+    }
+    .urgent-deadline {
+      font-size: .68rem;
+      color: var(--faint);
+      margin-left: auto;
+      white-space: nowrap;
+    }
+    .urgent-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .urgent-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: .82rem;
+      color: #e5e7eb;
+      padding: 8px 12px;
+      background: rgba(255,255,255,0.04);
+      border-radius: 8px;
+    }
+    .urgent-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #ef4444;
+      flex-shrink: 0;
+      margin-top: 5px;
+    }
+    .urgent-dot.yellow { background: var(--yellow); }
+    .urgent-list li .utag {
+      font-size: .62rem;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 4px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .utag.red   { background: rgba(239,68,68,0.2);  color: #fca5a5; }
+    .utag.yellow { background: rgba(251,191,36,0.2); color: #fde68a; }
+    .urgent-body { flex: 1; }
+    .urgent-title { font-weight: 600; line-height: 1.4; }
+    .urgent-sub { font-size: .7rem; color: var(--muted); margin-top: 2px; }
+
     /* ── Util ── */
     .pb-section { padding-bottom: 56px; }
   </style>
@@ -391,10 +606,80 @@
     <div class="hero-badge">2026.10 鳥取市 — 事業計画書</div>
     <h1>🎃 <span class="accent">トリモブの</span>ハロウィンナイト</h1>
     <p class="sub">サンロード商店街 × 丸由百貨店アーケード × 風紋広場</p>
-    <p class="org">主催：株式会社琴線</p>
+    <p class="org">資料作成：株式会社琴線</p>
   </div>
 
   <div class="container pb-section">
+
+    <!-- Urgent Tasks -->
+    <div class="section">
+      <div class="section-title"><h2>🚨 至急タスク（6月〜7月）</h2><div class="line"></div></div>
+      <div class="urgent-banner">
+        <div class="urgent-banner-header">
+          <span class="urgent-badge">URGENT</span>
+          <h3>開催まで約4ヶ月。今月・来月が許認可の勝負どころです。</h3>
+          <span class="urgent-deadline">現在：2026年6月</span>
+        </div>
+        <ul class="urgent-list">
+          <li>
+            <span class="utag red">今月中</span>
+            <div class="urgent-body">
+              <div class="urgent-title">サンロード商店街振興組合への説明・許可申請</div>
+              <div class="urgent-sub">会場の根幹。ここが決まらないと他の申請・出店者招致が進まない。</div>
+            </div>
+          </li>
+          <li>
+            <span class="utag red">今月中</span>
+            <div class="urgent-body">
+              <div class="urgent-title">丸由百貨店（ビル管理会社）への使用交渉</div>
+              <div class="urgent-sub">アーケードエリア確保。先方の意思決定に時間がかかる可能性あり、早期アプローチ必須。</div>
+            </div>
+          </li>
+          <li>
+            <span class="utag red">今月中</span>
+            <div class="urgent-body">
+              <div class="urgent-title">鳥取市への風紋広場 使用許可申請</div>
+              <div class="urgent-sub">道路占用許可・公園使用許可を市へ申請。行政手続きは時間がかかるため最優先。</div>
+            </div>
+          </li>
+          <li>
+            <span class="utag red">今月中</span>
+            <div class="urgent-body">
+              <div class="urgent-title">鳥取県・鳥取市への後援申請</div>
+              <div class="urgent-sub">後援名義は出店者・スポンサー交渉の信頼性に直結。協賛募集前に取得したい。</div>
+            </div>
+          </li>
+          <li>
+            <span class="utag yellow">7月中</span>
+            <div class="urgent-body">
+              <div class="urgent-title">昨年協賛企業への2026年協賛オファー</div>
+              <div class="urgent-sub">昨年30社超の実績あり。継続参加のお願いを早めに。新規スポンサー開拓も並行して着手。</div>
+            </div>
+          </li>
+          <li>
+            <span class="utag yellow">7月中</span>
+            <div class="urgent-body">
+              <div class="urgent-title">保健所への露店営業届出・警察署への道路使用許可申請</div>
+              <div class="urgent-sub">飲食出店分の保健所届、交通整理が必要な場合は警察署へ。提出期限を各窓口に確認。</div>
+            </div>
+          </li>
+          <li>
+            <span class="utag yellow">7月中</span>
+            <div class="urgent-body">
+              <div class="urgent-title">キッチンカー・出店者の仮募集・打診開始</div>
+              <div class="urgent-sub">人気店は早期に埋まる。昨年出店者への声がけから始め、ラインナップを固める。</div>
+            </div>
+          </li>
+          <li>
+            <span class="utag yellow">7月中</span>
+            <div class="urgent-body">
+              <div class="urgent-title">子育て王国とっとり 担当課へのタイアップ提案</div>
+              <div class="urgent-sub">行政連携は時間軸が長い。後援申請と合わせて早めにアポを取る。</div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
 
     <!-- KPI -->
     <div class="section">
@@ -647,6 +932,106 @@
       </div>
     </div>
 
+    <!-- Sponsorship -->
+    <div class="section">
+      <div class="section-title"><h2>🤝 協賛実績 &amp; 協賛募集</h2><div class="line"></div></div>
+      <div class="sponsor-wrap">
+        <p class="sponsor-note">2025年トリモブフェスタでは、地域の企業・個人の皆様から多くのご協賛をいただきました。</p>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:4px;">
+          <div style="background:rgba(251,146,60,0.1);border:1px solid rgba(251,146,60,0.3);border-radius:12px;padding:16px;text-align:center;">
+            <div style="font-size:1.6rem;font-weight:700;color:var(--orange);">30<span style="font-size:.9rem;">社以上</span></div>
+            <div style="font-size:.7rem;color:var(--muted);margin-top:4px;">協賛企業・個人数</div>
+          </div>
+          <div style="background:rgba(251,146,60,0.1);border:1px solid rgba(251,146,60,0.3);border-radius:12px;padding:16px;text-align:center;">
+            <div style="font-size:1.6rem;font-weight:700;color:var(--orange);">258,000<span style="font-size:.9rem;">円</span></div>
+            <div style="font-size:.7rem;color:var(--muted);margin-top:4px;">現金協賛合計（確認分）</div>
+          </div>
+          <div style="background:rgba(167,139,250,0.1);border:1px solid rgba(167,139,250,0.3);border-radius:12px;padding:16px;text-align:center;">
+            <div style="font-size:1.6rem;font-weight:700;color:var(--purple);">＋</div>
+            <div style="font-size:.7rem;color:var(--muted);margin-top:4px;">物品協賛（発電機 等）</div>
+          </div>
+        </div>
+        <p style="font-size:.72rem;color:var(--faint);margin-top:12px;">ご協賛いただいた全ての皆様に、心より感謝申し上げます。</p>
+      </div>
+
+      <div style="margin-top:20px;">
+        <p style="font-size:.78rem;color:var(--muted);margin-bottom:12px;">2026年ハロウィンナイトに向けた協賛プランは以下の通りです。</p>
+        <div class="sponsor-plans">
+          <div class="sponsor-plan-card">
+            <div class="splan-name">🥇 プラチナ協賛</div>
+            <div class="splan-amount">30,000円以上</div>
+            <div class="splan-benefit">フライヤー・ポスター掲載 / 当日看板 / SNS告知</div>
+          </div>
+          <div class="sponsor-plan-card">
+            <div class="splan-name">🥈 ゴールド協賛</div>
+            <div class="splan-amount">10,000円〜29,999円</div>
+            <div class="splan-benefit">フライヤー・ポスター掲載 / SNS告知</div>
+          </div>
+          <div class="sponsor-plan-card">
+            <div class="splan-name">🥉 シルバー協賛</div>
+            <div class="splan-amount">5,000円〜9,999円</div>
+            <div class="splan-benefit">SNS告知 / 協賛者一覧掲載</div>
+          </div>
+          <div class="sponsor-plan-card">
+            <div class="splan-name">💛 サポーター</div>
+            <div class="splan-amount">1,000円〜4,999円</div>
+            <div class="splan-benefit">協賛者一覧掲載 / 物品・サービス協賛も歓迎</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Crowdfunding -->
+    <div class="section">
+      <div class="section-title"><h2>🎯 クラウドファンディング構想</h2><div class="line"></div></div>
+
+      <div class="cf-hero">
+        <div class="cf-tagline">「面白そうだから、応援したい」<br>——そう思ってくれる人を、仲間にしたい。</div>
+        <div class="cf-sub">
+          このイベントは、鳥取のまちを一夜だけハロウィンの世界に変える挑戦です。<br>
+          リターンを目当てにするのではなく、「このイベントが実現してほしい」という気持ちで支援してくれる方の力を集めたいと考えています。<br>
+          あなたの応援が、鳥取の秋の夜を特別なものにします。
+        </div>
+      </div>
+
+      <div class="cf-tiers">
+        <div class="cf-tier plain">
+          <span class="cf-tier-tag entry">エントリー</span>
+          <div class="cf-tier-amount">1,000円〜</div>
+          <div class="cf-tier-label">応援サポーター</div>
+          <div class="cf-tier-return">
+            ・お名前をイベント公式サイト・SNSに掲載<br>
+            ・感謝メッセージをお送りします
+          </div>
+        </div>
+        <div class="cf-tier featured">
+          <span class="cf-tier-tag pop">人気</span>
+          <div class="cf-tier-amount">10,000円〜</div>
+          <div class="cf-tier-label">フードチケット付き応援</div>
+          <div class="cf-tier-return">
+            ・当日使えるフード無料チケット（1,000円分）<br>
+            ・お名前をイベント公式サイト・SNSに掲載<br>
+            ・感謝メッセージをお送りします
+          </div>
+        </div>
+        <div class="cf-tier">
+          <span class="cf-tier-tag cheer">全力応援</span>
+          <div class="cf-tier-amount">30,000円〜</div>
+          <div class="cf-tier-label">スペシャルサポーター</div>
+          <div class="cf-tier-return">
+            ・フード無料チケット（3,000円分）<br>
+            ・お名前を当日会場の看板に掲載<br>
+            ・運営チームからの特別御礼（報告書・写真集）
+          </div>
+        </div>
+      </div>
+
+      <div class="cf-spirit">
+        <strong>代表からのメッセージ</strong><br>
+        「支援してくれた方に何かを返したい気持ちはもちろんあります。でも一番伝えたいのは、このイベントを一緒に作ってほしいということ。ハロウィンの夜、鳥取のまちがざわめく瞬間を、あなたの力で実現してほしいんです。」
+      </div>
+    </div>
+
     <!-- Budget -->
     <div class="section">
       <div class="section-title"><h2>💰 予算・収入概要</h2><div class="line"></div></div>
@@ -666,14 +1051,18 @@
           </div>
         </div>
         <div class="budget-card">
-          <div class="budget-card-title">収入源</div>
+          <div class="budget-card-title">収入・資金</div>
           <div class="income-item">
-            <span class="income-plus">＋</span>
-            <div><div class="income-name">出店料（飲食・物販）</div><div class="income-note">ブース数×単価</div></div>
+            <span class="income-plus" style="color:var(--orange)">★</span>
+            <div><div class="income-name" style="color:#fde68a;font-weight:700;">トリモブ既存貯蓄</div><div class="income-note">初期運営資金として充当 — 30万円</div></div>
           </div>
           <div class="income-item">
             <span class="income-plus">＋</span>
-            <div><div class="income-name">スポンサー協賛費</div><div class="income-note">企業冠スポンサー</div></div>
+            <div><div class="income-name">スポンサー協賛費（目標）</div><div class="income-note">昨年実績26万円超 → 30〜50万円目標</div></div>
+          </div>
+          <div class="income-item">
+            <span class="income-plus">＋</span>
+            <div><div class="income-name">出店料（飲食・物販）</div><div class="income-note">ブース数×単価</div></div>
           </div>
           <div class="income-item">
             <span class="income-plus">＋</span>
@@ -686,6 +1075,9 @@
           <div class="income-item">
             <span class="income-plus">＋</span>
             <div><div class="income-name">県・市からの補助金</div><div class="income-note">後援申請と連動</div></div>
+          </div>
+          <div style="margin-top:12px;padding:10px 12px;background:rgba(251,146,60,0.1);border:1px solid rgba(251,146,60,0.3);border-radius:10px;font-size:.74rem;color:#fdba74;">
+            貯蓄30万円をベースに協賛獲得を積極推進。楽観シナリオでは黒字運営が見込めます。
           </div>
         </div>
       </div>
@@ -784,7 +1176,7 @@
   </div><!-- /container -->
 
   <footer>
-    株式会社琴線 — トリモブフェスタ 2026 &nbsp;|&nbsp; 本資料は事業計画の暫定案です
+    資料作成：株式会社琴線 — トリモブフェスタ 2026 &nbsp;|&nbsp; 本資料は事業計画の暫定案です
   </footer>
 
   <script>
